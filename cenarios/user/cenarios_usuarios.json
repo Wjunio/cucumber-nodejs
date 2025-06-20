@@ -1,0 +1,192 @@
+{
+  "config": {
+    "urlBase": "https://jsonplaceholder.typicode.com",
+    "timeout": 10000,
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "cenarios": {
+    "criar_usuario_sucesso": {
+      "descricao": "Criar um novo usuário com dados válidos",
+      "metodo": "POST",
+      "endpoint": "/users",
+      "dados": {
+        "name": "João Silva",
+        "username": "joao.silva",
+        "email": "joao.silva@exemplo.com"
+      },
+      "status_esperado": 201,
+      "validacoes": [
+        {
+          "campo": "name",
+          "valor": "João Silva",
+          "tipo": "string"
+        },
+        {
+          "campo": "username",
+          "valor": "joao.silva",
+          "tipo": "string"
+        }
+      ]
+    },
+    "criar_usuario_dados_incompletos": {
+      "descricao": "Tentar criar usuário com dados incompletos",
+      "metodo": "POST",
+      "endpoint": "/users",
+      "dados": {
+        "name": "Maria"
+      },
+      "status_esperado": 201,
+      "validacoes": [
+        {
+          "campo": "name",
+          "valor": "Maria",
+          "tipo": "string"
+        }
+      ]
+    },
+    "criar_usuario_email_invalido": {
+      "descricao": "Tentar criar usuário com email inválido",
+      "metodo": "POST",
+      "endpoint": "/users",
+      "dados": {
+        "name": "Pedro",
+        "username": "pedro",
+        "email": "email_invalido"
+      },
+      "status_esperado": 201,
+      "validacoes": [
+        {
+          "campo": "email",
+          "valor": "email_invalido",
+          "tipo": "string"
+        }
+      ]
+    },
+    "consultar_usuario_por_id": {
+      "descricao": "Consultar um usuário específico por ID",
+      "metodo": "GET",
+      "endpoint": "/users/1",
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "campo": "username",
+          "valor": "Bret",
+          "tipo": "string"
+        },
+        {
+          "campo": "name",
+          "tipo": "existe"
+        }
+      ]
+    },
+    "consultar_usuario_inexistente": {
+      "descricao": "Tentar consultar um usuário que não existe",
+      "metodo": "GET",
+      "endpoint": "/users/999",
+      "status_esperado": 404
+    },
+    "listar_todos_usuarios": {
+      "descricao": "Listar todos os usuários",
+      "metodo": "GET",
+      "endpoint": "/users",
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "tipo": "lista",
+          "minimo": 1
+        }
+      ]
+    },
+    "consultar_usuario_por_username": {
+      "descricao": "Consultar usuário por username",
+      "metodo": "GET",
+      "endpoint": "/users?username=Bret",
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "campo": "username",
+          "valor": "Bret",
+          "tipo": "string",
+          "na_lista": true
+        }
+      ]
+    },
+    "atualizar_usuario_sucesso": {
+      "descricao": "Atualizar os dados de um usuário existente",
+      "metodo": "PUT",
+      "endpoint": "/users/1",
+      "dados": {
+        "name": "Wellington Tuler",
+        "email": "wellington.tuler@exemplo.com"
+      },
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "campo": "name",
+          "valor": "Wellington Tuler",
+          "tipo": "string"
+        },
+        {
+          "campo": "email",
+          "valor": "wellington.tuler@exemplo.com",
+          "tipo": "string"
+        }
+      ]
+    },
+    "atualizar_usuario_parcial": {
+      "descricao": "Atualizar apenas alguns campos do usuário",
+      "metodo": "PATCH",
+      "endpoint": "/users/1",
+      "dados": {
+        "email": "novo.email@exemplo.com"
+      },
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "campo": "email",
+          "valor": "novo.email@exemplo.com",
+          "tipo": "string"
+        }
+      ]
+    },
+    "atualizar_usuario_inexistente": {
+      "descricao": "Tentar atualizar um usuário que não existe",
+      "metodo": "PUT",
+      "endpoint": "/users/999",
+      "dados": {
+        "name": "Usuário Inexistente"
+      },
+      "status_esperado": 500
+    },
+    "atualizar_usuario_dados_invalidos": {
+      "descricao": "Tentar atualizar usuário com dados inválidos",
+      "metodo": "PUT",
+      "endpoint": "/users/1",
+      "dados": {
+        "email": "email_invalido"
+      },
+      "status_esperado": 200,
+      "validacoes": [
+        {
+          "campo": "email",
+          "valor": "email_invalido",
+          "tipo": "string"
+        }
+      ]
+    },
+    "excluir_usuario_sucesso": {
+      "descricao": "Excluir um usuário existente",
+      "metodo": "DELETE",
+      "endpoint": "/users/1",
+      "status_esperado": 200
+    },
+    "excluir_usuario_inexistente": {
+      "descricao": "Tentar excluir um usuário que não existe",
+      "metodo": "DELETE",
+      "endpoint": "/users/999",
+      "status_esperado": 200
+    }
+  }
+} 
