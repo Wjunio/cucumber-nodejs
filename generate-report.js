@@ -23,7 +23,7 @@ report.generate({
   customData: {
     title: 'Informações da Execução',
     data: [
-      { label: 'Projeto', value: 'Organize Vitta - API Tests' },
+      { label: 'Projeto', value: 'Qualquer Projeto - API Tests' },
       { label: 'Release', value: '1.2.3' },
       { label: 'Ciclo', value: 'B11221.34321' },
       { label: 'Início da Execução', value: new Date().toLocaleString() },

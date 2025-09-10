@@ -1,7 +1,7 @@
 {
   "name": "organize-vitta-cucumber",
   "version": "1.0.0",
-  "description": "Ambiente cucumber para testar API organize Vitta",
+  "description": "Ambiente cucumber para testar API Qualquer Projeto",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Iniciando testes com cucumber\" && cucumber-js --format json:reports/report.json --format summary --publish-quiet",
